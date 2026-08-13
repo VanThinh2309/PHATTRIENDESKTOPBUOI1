@@ -1,0 +1,9 @@
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\bin\Debug\Bai2.exe.config
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\bin\Debug\Bai2.exe
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\bin\Debug\Bai2.pdb
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\obj\Debug\Bai2.Properties.Resources.resources
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\obj\Debug\Bai2.csproj.GenerateResource.cache
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\obj\Debug\Bai2.csproj.CoreCompileInputs.cache
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\obj\Debug\Bai2.exe
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\obj\Debug\Bai2.pdb
+D:\Thinh_LapTrinh\BaiThucHanhBuoi1\Bai2\obj\Debug\Bai2.MainForm.resources
