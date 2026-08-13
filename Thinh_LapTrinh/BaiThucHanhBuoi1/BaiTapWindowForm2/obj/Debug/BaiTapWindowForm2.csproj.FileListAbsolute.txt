@@ -1,0 +1,14 @@
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\bin\Debug\BaiTapWindowForm2.exe.config
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\bin\Debug\BaiTapWindowForm2.exe
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\bin\Debug\BaiTapWindowForm2.pdb
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.csproj.AssemblyReference.cache
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.frmChinh.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.Properties.Resources.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.csproj.GenerateResource.cache
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.exe
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.pdb
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.exe.config
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.frmBai1.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.frmBai2.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapWindowForm2\obj\Debug\BaiTapWindowForm2.frmBai3.resources

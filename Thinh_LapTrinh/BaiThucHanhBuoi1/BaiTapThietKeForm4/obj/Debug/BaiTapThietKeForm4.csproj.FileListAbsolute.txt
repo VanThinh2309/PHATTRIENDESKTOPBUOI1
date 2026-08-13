@@ -1,0 +1,13 @@
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\bin\Debug\BaiTapThietKeForm4.exe.config
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\bin\Debug\BaiTapThietKeForm4.exe
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\bin\Debug\BaiTapThietKeForm4.pdb
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.csproj.AssemblyReference.cache
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.frmBai1.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.frmBai2.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.frmBai3.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.frmChinh.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.Properties.Resources.resources
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.csproj.GenerateResource.cache
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.exe
+C:\Users\ASUS\Downloads\BaiThucHanhBuoi1-20260813T100116Z-1-001\BaiThucHanhBuoi1\BaiTapThietKeForm4\obj\Debug\BaiTapThietKeForm4.pdb
