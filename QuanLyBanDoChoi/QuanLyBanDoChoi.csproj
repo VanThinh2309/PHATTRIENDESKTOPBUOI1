@@ -138,6 +138,7 @@
   <ItemGroup>
     <Content Include="bin\Debug\QuanLyBanDoChoi.exe" />
     <Content Include="bin\Debug\QuanLyBanDoChoi.pdb" />
+    <Content Include="QLBDC_DB.sql" />
     <Content Include="Quan_Ly_Do_Choi_DB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
