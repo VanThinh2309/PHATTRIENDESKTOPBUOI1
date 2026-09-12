@@ -62,11 +62,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="frmLoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoc.Designer.cs">
+      <DependentUpon>frmLoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemSP.Designer.cs">
+      <DependentUpon>frmThemSP.cs</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Program.cs" />
@@ -97,8 +109,14 @@
     <Compile Include="UC_SanPham.Designer.cs">
       <DependentUpon>UC_SanPham.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmLoc.resx">
+      <DependentUpon>frmLoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemSP.resx">
+      <DependentUpon>frmThemSP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,13 +157,6 @@
     <Content Include="bin\Debug\QuanLyBanDoChoi.exe" />
     <Content Include="bin\Debug\QuanLyBanDoChoi.pdb" />
     <Content Include="QLBDC_DB.sql" />
-    <Content Include="Quan_Ly_Do_Choi_DB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Quan_Ly_Do_Choi_DB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Quan_Ly_Do_Choi_DB.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

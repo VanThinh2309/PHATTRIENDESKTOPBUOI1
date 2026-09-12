@@ -231,5 +231,10 @@ namespace QuanLyBanDoChoi
         {
             dtpDenNgay.CustomFormat = "dd/MM/yyyy";
         }
+
+        private void dgvThongTinDoChoi_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
