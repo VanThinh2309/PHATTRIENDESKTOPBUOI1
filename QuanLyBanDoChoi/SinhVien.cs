@@ -17,6 +17,9 @@ namespace QuanLyBanDoChoi
 
         public KhachHang()
         {
+            DiemTichLuy = 0;
+            HangKhachHang = "Thường";
+            TrangThai = true;
         }
 
         public KhachHang(

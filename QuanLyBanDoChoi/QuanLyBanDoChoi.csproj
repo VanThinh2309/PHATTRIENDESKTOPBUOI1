@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="DSKH.cs" />
+    <Compile Include="frmLichSu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLichSu.Designer.cs">
+      <DependentUpon>frmLichSu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +81,12 @@
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemKH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemKH.Designer.cs">
+      <DependentUpon>frmThemKH.cs</DependentUpon>
     </Compile>
     <Compile Include="frmThemSP.cs">
       <SubType>Form</SubType>
@@ -90,6 +104,12 @@
     </Compile>
     <Compile Include="ucKhachHang.Designer.cs">
       <DependentUpon>ucKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucThongKe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucThongKe.Designer.cs">
+      <DependentUpon>ucThongKe.cs</DependentUpon>
     </Compile>
     <Compile Include="UC_BanHang.cs">
       <SubType>UserControl</SubType>
@@ -109,11 +129,17 @@
     <Compile Include="UC_SanPham.Designer.cs">
       <DependentUpon>UC_SanPham.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmLichSu.resx">
+      <DependentUpon>frmLichSu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLoc.resx">
       <DependentUpon>frmLoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemKH.resx">
+      <DependentUpon>frmThemKH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemSP.resx">
       <DependentUpon>frmThemSP.cs</DependentUpon>
@@ -129,6 +155,9 @@
     </Compile>
     <EmbeddedResource Include="ucKhachHang.resx">
       <DependentUpon>ucKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucThongKe.resx">
+      <DependentUpon>ucThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_BanHang.resx">
       <DependentUpon>UC_BanHang.cs</DependentUpon>
