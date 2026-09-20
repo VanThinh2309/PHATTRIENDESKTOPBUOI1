@@ -37,8 +37,9 @@
             this.ptb3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.uC_BanHang1 = new QuanLyBanDoChoi.UC_BanHang();
+            this.ucThongKe1 = new QuanLyBanDoChoi.ucThongKe();
             this.uC_SanPham1 = new QuanLyBanDoChoi.UC_SanPham();
+            this.uC_BanHang1 = new QuanLyBanDoChoi.UC_BanHang();
             this.ucKhachHang1 = new QuanLyBanDoChoi.ucKhachHang();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pct5)).BeginInit();
@@ -61,19 +62,19 @@
             this.pnlMenu.Controls.Add(this.pictureBox1);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(95, 583);
+            this.pnlMenu.Size = new System.Drawing.Size(127, 718);
             this.pnlMenu.TabIndex = 0;
             this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
             // 
             // pct5
             // 
             this.pct5.Image = ((System.Drawing.Image)(resources.GetObject("pct5.Image")));
-            this.pct5.Location = new System.Drawing.Point(14, 410);
-            this.pct5.Margin = new System.Windows.Forms.Padding(2);
+            this.pct5.Location = new System.Drawing.Point(19, 505);
+            this.pct5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pct5.Name = "pct5";
-            this.pct5.Size = new System.Drawing.Size(58, 44);
+            this.pct5.Size = new System.Drawing.Size(77, 54);
             this.pct5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pct5.TabIndex = 5;
             this.pct5.TabStop = false;
@@ -82,10 +83,10 @@
             // ptb1
             // 
             this.ptb1.Image = ((System.Drawing.Image)(resources.GetObject("ptb1.Image")));
-            this.ptb1.Location = new System.Drawing.Point(14, 89);
-            this.ptb1.Margin = new System.Windows.Forms.Padding(2);
+            this.ptb1.Location = new System.Drawing.Point(19, 110);
+            this.ptb1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb1.Name = "ptb1";
-            this.ptb1.Size = new System.Drawing.Size(58, 50);
+            this.ptb1.Size = new System.Drawing.Size(77, 62);
             this.ptb1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptb1.TabIndex = 4;
             this.ptb1.TabStop = false;
@@ -94,10 +95,10 @@
             // ptb2
             // 
             this.ptb2.Image = ((System.Drawing.Image)(resources.GetObject("ptb2.Image")));
-            this.ptb2.Location = new System.Drawing.Point(14, 169);
-            this.ptb2.Margin = new System.Windows.Forms.Padding(2);
+            this.ptb2.Location = new System.Drawing.Point(19, 208);
+            this.ptb2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb2.Name = "ptb2";
-            this.ptb2.Size = new System.Drawing.Size(58, 44);
+            this.ptb2.Size = new System.Drawing.Size(77, 54);
             this.ptb2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptb2.TabIndex = 3;
             this.ptb2.TabStop = false;
@@ -106,10 +107,10 @@
             // ptb4
             // 
             this.ptb4.Image = ((System.Drawing.Image)(resources.GetObject("ptb4.Image")));
-            this.ptb4.Location = new System.Drawing.Point(14, 331);
-            this.ptb4.Margin = new System.Windows.Forms.Padding(2);
+            this.ptb4.Location = new System.Drawing.Point(19, 407);
+            this.ptb4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb4.Name = "ptb4";
-            this.ptb4.Size = new System.Drawing.Size(58, 44);
+            this.ptb4.Size = new System.Drawing.Size(77, 54);
             this.ptb4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptb4.TabIndex = 2;
             this.ptb4.TabStop = false;
@@ -118,10 +119,10 @@
             // ptb3
             // 
             this.ptb3.Image = ((System.Drawing.Image)(resources.GetObject("ptb3.Image")));
-            this.ptb3.Location = new System.Drawing.Point(14, 249);
-            this.ptb3.Margin = new System.Windows.Forms.Padding(2);
+            this.ptb3.Location = new System.Drawing.Point(19, 306);
+            this.ptb3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb3.Name = "ptb3";
-            this.ptb3.Size = new System.Drawing.Size(58, 44);
+            this.ptb3.Size = new System.Drawing.Size(77, 54);
             this.ptb3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptb3.TabIndex = 1;
             this.ptb3.TabStop = false;
@@ -131,59 +132,71 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(95, 85);
+            this.pictureBox1.Size = new System.Drawing.Size(127, 105);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // pnlContent
             // 
+            this.pnlContent.Controls.Add(this.ucThongKe1);
             this.pnlContent.Controls.Add(this.uC_SanPham1);
             this.pnlContent.Controls.Add(this.uC_BanHang1);
             this.pnlContent.Controls.Add(this.ucKhachHang1);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(95, 0);
-            this.pnlContent.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlContent.Location = new System.Drawing.Point(127, 0);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1008, 583);
+            this.pnlContent.Size = new System.Drawing.Size(1344, 718);
             this.pnlContent.TabIndex = 1;
             this.pnlContent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContent_Paint);
+            // 
+            // ucThongKe1
+            // 
+            this.ucThongKe1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucThongKe1.Location = new System.Drawing.Point(0, 0);
+            this.ucThongKe1.Name = "ucThongKe1";
+            this.ucThongKe1.Size = new System.Drawing.Size(1344, 718);
+            this.ucThongKe1.TabIndex = 3;
+            this.ucThongKe1.Visible = false;
+            // 
+            // uC_SanPham1
+            // 
+            this.uC_SanPham1.AutoSize = true;
+            this.uC_SanPham1.Location = new System.Drawing.Point(1, 1);
+            this.uC_SanPham1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.uC_SanPham1.Name = "uC_SanPham1";
+            this.uC_SanPham1.Size = new System.Drawing.Size(1344, 721);
+            this.uC_SanPham1.TabIndex = 1;
             // 
             // uC_BanHang1
             // 
             this.uC_BanHang1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uC_BanHang1.Location = new System.Drawing.Point(0, 0);
+            this.uC_BanHang1.Margin = new System.Windows.Forms.Padding(5);
             this.uC_BanHang1.Name = "uC_BanHang1";
-            this.uC_BanHang1.Size = new System.Drawing.Size(1008, 583);
+            this.uC_BanHang1.Size = new System.Drawing.Size(1344, 718);
             this.uC_BanHang1.TabIndex = 0;
-            // 
-            // uC_SanPham1
-            // 
-            this.uC_SanPham1.Location = new System.Drawing.Point(1, 1);
-            this.uC_SanPham1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.uC_SanPham1.Name = "uC_SanPham1";
-            this.uC_SanPham1.Size = new System.Drawing.Size(1008, 586);
-            this.uC_SanPham1.TabIndex = 1;
             // 
             // ucKhachHang1
             // 
             this.ucKhachHang1.Location = new System.Drawing.Point(1, 0);
-            this.ucKhachHang1.Margin = new System.Windows.Forms.Padding(2);
+            this.ucKhachHang1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ucKhachHang1.Name = "ucKhachHang1";
-            this.ucKhachHang1.Size = new System.Drawing.Size(1008, 586);
+            this.ucKhachHang1.Size = new System.Drawing.Size(1344, 721);
             this.ucKhachHang1.TabIndex = 2;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1103, 583);
+            this.ClientSize = new System.Drawing.Size(1471, 718);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -197,6 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptb3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -214,6 +228,7 @@
         private UC_BanHang uC_BanHang1;
         private UC_SanPham uC_SanPham1;
         private ucKhachHang ucKhachHang1;
+        private ucThongKe ucThongKe1;
     }
 }
 

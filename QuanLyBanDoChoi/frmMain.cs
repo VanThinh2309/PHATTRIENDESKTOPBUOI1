@@ -35,6 +35,7 @@ namespace QuanLyBanDoChoi
             uC_BanHang1.Visible = false;
             uC_SanPham1.Visible = false;
             ucKhachHang1.Visible = false;
+           
 
             // Đưa UserControl được chọn lên trên cùng và hiển thị
             uc.BringToFront();
@@ -57,7 +58,7 @@ namespace QuanLyBanDoChoi
 
         private void ptb4_Click(object sender, EventArgs e)
         {
-
+            ShowUserControl(ucThongKe1);
         }
 
         private void pct5_Click(object sender, EventArgs e)
@@ -74,7 +75,5 @@ namespace QuanLyBanDoChoi
         {
 
         }
-
-        
     }
 }
