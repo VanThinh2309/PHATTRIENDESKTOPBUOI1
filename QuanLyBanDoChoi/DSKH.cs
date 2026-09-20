@@ -53,16 +53,16 @@ namespace QuanLyBanDoChoi
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaKH", kh.MaKH);
                 cmd.Parameters.AddWithValue("@TenKH", kh.TenKH);
-                cmd.Parameters.AddWithValue("@SDT", kh.SDT);
+                cmd.Parameters.AddWithValue("@SDT", (object)kh.SDT ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@DiemTichLuy", kh.DiemTichLuy);
-                cmd.Parameters.AddWithValue("@HangKhachHang", kh.HangKhachHang);
+                cmd.Parameters.AddWithValue("@HangKhachHang", kh.HangKhachHang ?? "Đồng");
 
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
 
-        // 3. Cập nhật thông tin khách hàng (Điểm tích lũy read-only, không sửa trực tiếp ở đây)
+        // 3. Cập nhật thông tin khách hàng
         public bool CapNhat(KhachHang kh)
         {
             string query = @"UPDATE KhachHang 
@@ -74,7 +74,7 @@ namespace QuanLyBanDoChoi
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaKH", kh.MaKH);
                 cmd.Parameters.AddWithValue("@TenKH", kh.TenKH);
-                cmd.Parameters.AddWithValue("@SDT", kh.SDT);
+                cmd.Parameters.AddWithValue("@SDT", (object)kh.SDT ?? DBNull.Value);
 
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
@@ -96,7 +96,7 @@ namespace QuanLyBanDoChoi
             }
         }
 
-        // 5. Tìm kiếm khách hàng theo Tên hoặc Số điện thoại
+        // 5. Tìm kiếm khách hàng theo Tên, SDT hoặc Mã KH
         public List<KhachHang> TimKiem(string tuKhoa)
         {
             List<KhachHang> list = new List<KhachHang>();
@@ -129,11 +129,11 @@ namespace QuanLyBanDoChoi
             return list;
         }
 
-        // 6. Lấy Lịch sử mua hàng theo Mã khách hàng
+        // 6. Lấy Lịch sử mua hàng theo Mã khách hàng (Đã cập nhật theo ERD mới)
         public DataTable LayLichSuMuaHang(string maKH)
         {
             DataTable dt = new DataTable();
-            string query = @"SELECT MaHD, NgayLap, LoaiHoaDon, PhuongThucThanhToan, TongTien, TrangThai 
+            string query = @"SELECT MaHD, NgayLap, MaNenTang, GhiChu, PhuongThucThanhToan, TongTien, TrangThai, DiaChi, DonViVanChuyen 
                             FROM HoaDon 
                             WHERE MaKH = @MaKH 
                             ORDER BY NgayLap DESC";

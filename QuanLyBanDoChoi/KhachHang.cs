@@ -18,7 +18,7 @@ namespace QuanLyBanDoChoi
         public KhachHang()
         {
             DiemTichLuy = 0;
-            HangKhachHang = "Thường";
+            HangKhachHang = "Đồng"; // Đồng bộ với DEFAULT N'Đồng' trong SQL
             TrangThai = true;
         }
 
