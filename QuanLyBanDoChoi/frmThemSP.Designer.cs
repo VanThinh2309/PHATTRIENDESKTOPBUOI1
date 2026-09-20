@@ -57,6 +57,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnThemDongBo = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbHinh)).BeginInit();
@@ -66,6 +67,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.cbDoTuoi);
             this.panel4.Controls.Add(this.cbDanhMuc);
             this.panel4.Controls.Add(this.txtMaVach);
@@ -130,6 +132,7 @@
             this.txtMaVach.ForeColor = System.Drawing.Color.DarkGray;
             this.txtMaVach.Location = new System.Drawing.Point(273, 93);
             this.txtMaVach.Name = "txtMaVach";
+            this.txtMaVach.ReadOnly = true;
             this.txtMaVach.Size = new System.Drawing.Size(211, 21);
             this.txtMaVach.TabIndex = 3;
             this.txtMaVach.Text = "Mã vạch quét";
@@ -400,6 +403,17 @@
             this.panel1.Size = new System.Drawing.Size(800, 66);
             this.panel1.TabIndex = 5;
             // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.button1.Location = new System.Drawing.Point(190, 304);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 26);
+            this.button1.TabIndex = 5;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // frmThemSP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -457,5 +471,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnThemDongBo;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
     }
 }

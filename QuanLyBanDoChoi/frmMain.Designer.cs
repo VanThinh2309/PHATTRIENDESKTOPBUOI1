@@ -141,10 +141,10 @@
             // 
             // pnlContent
             // 
-            this.pnlContent.Controls.Add(this.ucThongKe1);
-            this.pnlContent.Controls.Add(this.uC_SanPham1);
             this.pnlContent.Controls.Add(this.uC_BanHang1);
             this.pnlContent.Controls.Add(this.ucKhachHang1);
+            this.pnlContent.Controls.Add(this.ucThongKe1);
+            this.pnlContent.Controls.Add(this.uC_SanPham1);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(127, 0);
             this.pnlContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
