@@ -1,4 +1,4 @@
-﻿namespace QuanLyBanDoChoi
+﻿namespace QuanLyBanDoChoi.GUI
 {
     partial class frmThemKH
     {

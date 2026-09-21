@@ -1,54 +1,53 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuanLyBanDoChoi.DTO;
 
-namespace QuanLyBanDoChoi
+namespace QuanLyBanDoChoi.DAL
 {
-    internal class DSKH
+    public class KhachHangDAL
     {
-        // Thay chuỗi kết nối phù hợp với máy của bạn
-        private string connectionString = @"Data Source=.;Initial Catalog=QuanLyBanDoChoi;Integrated Security=True";
-
         // 1. Lấy tất cả khách hàng chưa bị xóa (Soft-Delete)
-        public List<KhachHang> LayDanhSach()
+        public List<KhachHangDTO> LayDanhSach()
         {
-            List<KhachHang> list = new List<KhachHang>();
+            List<KhachHangDTO> list = new List<KhachHangDTO>();
             string query = "SELECT MaKH, TenKH, SDT, DiemTichLuy, HangKhachHang, TrangThai FROM KhachHang WHERE TrangThai = 1";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    KhachHang kh = new KhachHang
+                    while (reader.Read())
                     {
-                        MaKH = reader["MaKH"].ToString(),
-                        TenKH = reader["TenKH"].ToString(),
-                        SDT = reader["SDT"].ToString(),
-                        DiemTichLuy = Convert.ToInt32(reader["DiemTichLuy"]),
-                        HangKhachHang = reader["HangKhachHang"].ToString(),
-                        TrangThai = Convert.ToBoolean(reader["TrangThai"])
-                    };
-                    list.Add(kh);
+                        KhachHangDTO kh = new KhachHangDTO
+                        {
+                            MaKH = reader["MaKH"].ToString().Trim(),
+                            TenKH = reader["TenKH"].ToString(),
+                            SDT = reader["SDT"] != DBNull.Value ? reader["SDT"].ToString() : string.Empty,
+                            DiemTichLuy = reader["DiemTichLuy"] != DBNull.Value ? Convert.ToInt32(reader["DiemTichLuy"]) : 0,
+                            HangKhachHang = reader["HangKhachHang"] != DBNull.Value ? reader["HangKhachHang"].ToString() : "Đồng",
+                            TrangThai = reader["TrangThai"] != DBNull.Value && Convert.ToBoolean(reader["TrangThai"])
+                        };
+                        list.Add(kh);
+                    }
                 }
             }
             return list;
         }
 
         // 2. Thêm khách hàng mới
-        public bool Them(KhachHang kh)
+        public bool Them(KhachHangDTO kh)
         {
             string query = @"INSERT INTO KhachHang (MaKH, TenKH, SDT, DiemTichLuy, HangKhachHang, TrangThai) 
                             VALUES (@MaKH, @TenKH, @SDT, @DiemTichLuy, @HangKhachHang, 1)";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaKH", kh.MaKH);
@@ -63,13 +62,13 @@ namespace QuanLyBanDoChoi
         }
 
         // 3. Cập nhật thông tin khách hàng
-        public bool CapNhat(KhachHang kh)
+        public bool CapNhat(KhachHangDTO kh)
         {
             string query = @"UPDATE KhachHang 
                             SET TenKH = @TenKH, SDT = @SDT 
                             WHERE MaKH = @MaKH";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaKH", kh.MaKH);
@@ -86,7 +85,7 @@ namespace QuanLyBanDoChoi
         {
             string query = "UPDATE KhachHang SET TrangThai = 0 WHERE MaKH = @MaKH";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaKH", maKH);
@@ -97,39 +96,40 @@ namespace QuanLyBanDoChoi
         }
 
         // 5. Tìm kiếm khách hàng theo Tên, SDT hoặc Mã KH
-        public List<KhachHang> TimKiem(string tuKhoa)
+        public List<KhachHangDTO> TimKiem(string tuKhoa)
         {
-            List<KhachHang> list = new List<KhachHang>();
+            List<KhachHangDTO> list = new List<KhachHangDTO>();
             string query = @"SELECT MaKH, TenKH, SDT, DiemTichLuy, HangKhachHang, TrangThai 
                             FROM KhachHang 
                             WHERE TrangThai = 1 AND (TenKH LIKE @TuKhoa OR SDT LIKE @TuKhoa OR MaKH LIKE @TuKhoa)";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@TuKhoa", "%" + tuKhoa + "%");
 
                 conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    KhachHang kh = new KhachHang
+                    while (reader.Read())
                     {
-                        MaKH = reader["MaKH"].ToString(),
-                        TenKH = reader["TenKH"].ToString(),
-                        SDT = reader["SDT"].ToString(),
-                        DiemTichLuy = Convert.ToInt32(reader["DiemTichLuy"]),
-                        HangKhachHang = reader["HangKhachHang"].ToString(),
-                        TrangThai = Convert.ToBoolean(reader["TrangThai"])
-                    };
-                    list.Add(kh);
+                        KhachHangDTO kh = new KhachHangDTO
+                        {
+                            MaKH = reader["MaKH"].ToString().Trim(),
+                            TenKH = reader["TenKH"].ToString(),
+                            SDT = reader["SDT"] != DBNull.Value ? reader["SDT"].ToString() : string.Empty,
+                            DiemTichLuy = reader["DiemTichLuy"] != DBNull.Value ? Convert.ToInt32(reader["DiemTichLuy"]) : 0,
+                            HangKhachHang = reader["HangKhachHang"] != DBNull.Value ? reader["HangKhachHang"].ToString() : "Đồng",
+                            TrangThai = reader["TrangThai"] != DBNull.Value && Convert.ToBoolean(reader["TrangThai"])
+                        };
+                        list.Add(kh);
+                    }
                 }
             }
             return list;
         }
 
-        // 6. Lấy Lịch sử mua hàng theo Mã khách hàng (Đã cập nhật theo ERD mới)
+        // 6. Lấy Lịch sử mua hàng theo Mã khách hàng
         public DataTable LayLichSuMuaHang(string maKH)
         {
             DataTable dt = new DataTable();
@@ -138,15 +138,20 @@ namespace QuanLyBanDoChoi
                             WHERE MaKH = @MaKH 
                             ORDER BY NgayLap DESC";
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@MaKH", maKH);
 
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(dt);
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dt);
+                }
             }
             return dt;
         }
     }
+
+    // Alias hỗ trợ tương thích ngược với tên lớp DSKH cũ
+    public class DSKH : KhachHangDAL { }
 }

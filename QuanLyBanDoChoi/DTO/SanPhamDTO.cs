@@ -1,14 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyBanDoChoi
+namespace QuanLyBanDoChoi.DTO
 {
-    public class SanPham
+    public class SanPhamDTO
     {
-
         public string MaSP { get; set; }
         public string MaLoai { get; set; }
         public string TenSP { get; set; }
@@ -20,12 +19,14 @@ namespace QuanLyBanDoChoi
         public string HinhAnh { get; set; }
         public bool TrangThai { get; set; }
 
-        public SanPham()
+        public SanPhamDTO()
         {
-
+            TrangThai = true;
+            DonGia = 0;
+            TonKho = 0;
         }
 
-        public SanPham(
+        public SanPhamDTO(
             string maSP,
             string maLoai,
             string tenSP,
@@ -35,7 +36,7 @@ namespace QuanLyBanDoChoi
             decimal donGia,
             int tonKho,
             string hinhAnh,
-            bool trangThai)
+            bool trangThai = true)
         {
             MaSP = maSP;
             MaLoai = maLoai;
@@ -49,5 +50,25 @@ namespace QuanLyBanDoChoi
             TrangThai = trangThai;
         }
     }
-}  
 
+    // Alias hỗ trợ tương thích ngược
+    public class SanPham : SanPhamDTO
+    {
+        public SanPham() : base() { }
+
+        public SanPham(
+            string maSP,
+            string maLoai,
+            string tenSP,
+            string doTuoi,
+            string tenXuatXu,
+            string hang,
+            decimal donGia,
+            int tonKho,
+            string hinhAnh,
+            bool trangThai = true)
+            : base(maSP, maLoai, tenSP, doTuoi, tenXuatXu, hang, donGia, tonKho, hinhAnh, trangThai)
+        {
+        }
+    }
+}

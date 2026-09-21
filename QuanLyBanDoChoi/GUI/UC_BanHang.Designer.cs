@@ -1,4 +1,4 @@
-﻿namespace QuanLyBanDoChoi
+﻿namespace QuanLyBanDoChoi.GUI
 {
     partial class UC_BanHang
     {
@@ -79,7 +79,7 @@
             this.pnlEmptyCart = new System.Windows.Forms.Panel();
             this.lblEmpty = new System.Windows.Forms.Label();
             this.picCart = new System.Windows.Forms.PictureBox();
-            this.uC_ItemGioHang1 = new QuanLyBanDoChoi.UC_ItemGioHang();
+            this.uC_ItemGioHang1 = new QuanLyBanDoChoi.GUI.UC_ItemGioHang();
             this.tabPageLSMH = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1090,6 +1090,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ThanhToan;
         private System.Windows.Forms.DataGridViewTextBoxColumn NenTang;
         private System.Windows.Forms.DataGridViewTextBoxColumn TongTien;
-        private QuanLyBanDoChoi.UC_ItemGioHang uC_ItemGioHang1;
+        private QuanLyBanDoChoi.GUI.UC_ItemGioHang uC_ItemGioHang1;
     }
 }

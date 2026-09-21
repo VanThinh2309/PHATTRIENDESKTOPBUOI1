@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuanLyBanDoChoi.BUS;
+using QuanLyBanDoChoi.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QuanLyBanDoChoi
+namespace QuanLyBanDoChoi.GUI
 {
     public partial class ucKhachHang : UserControl
     {

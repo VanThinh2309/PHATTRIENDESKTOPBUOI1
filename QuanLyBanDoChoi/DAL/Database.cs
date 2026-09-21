@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,12 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyBanDoChoi
+namespace QuanLyBanDoChoi.DAL
 {
-    internal class Database
+    public class Database
     {
-        // Chuỗi kết nối đến SQL Server
-        private static string connectionString = @"Data Source=DESKTOP-0J2K7F9\SQLEXPRESS;Initial Catalog=QuanLyBanDoChoi;Integrated Security=True";
+        // Chuỗi kết nối đến SQL Server (có thể tùy chỉnh)
+        public static string ConnectionString { get; set; } = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QLBDC_DB;Integrated Security=True";
+
+        public static SqlConnection GetConnection()
+        {
+            return new SqlConnection(ConnectionString);
+        }
 
         /// <summary>
         /// Lấy dữ liệu trả về dạng DataTable (SELECT)
@@ -19,7 +24,7 @@ namespace QuanLyBanDoChoi
         public static DataTable GetData(string query, SqlParameter[] parameters = null, CommandType commandType = CommandType.Text)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -45,7 +50,7 @@ namespace QuanLyBanDoChoi
         public static int ExecuteNonQuery(string query, SqlParameter[] parameters = null, CommandType commandType = CommandType.Text)
         {
             int rowsAffected = 0;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -69,7 +74,7 @@ namespace QuanLyBanDoChoi
         public static object ExecuteScalar(string query, SqlParameter[] parameters = null, CommandType commandType = CommandType.Text)
         {
             object result = null;
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = GetConnection())
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {

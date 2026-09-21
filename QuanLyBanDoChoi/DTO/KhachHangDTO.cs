@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyBanDoChoi
+namespace QuanLyBanDoChoi.DTO
 {
-    public class KhachHang
+    public class KhachHangDTO
     {
         public string MaKH { get; set; }
         public string TenKH { get; set; }
@@ -15,20 +15,20 @@ namespace QuanLyBanDoChoi
         public string HangKhachHang { get; set; }
         public bool TrangThai { get; set; }
 
-        public KhachHang()
+        public KhachHangDTO()
         {
             DiemTichLuy = 0;
-            HangKhachHang = "Đồng"; // Đồng bộ với DEFAULT N'Đồng' trong SQL
+            HangKhachHang = "Đồng";
             TrangThai = true;
         }
 
-        public KhachHang(
+        public KhachHangDTO(
             string maKH,
             string tenKH,
             string sDT,
             int diemTichLuy,
             string hangKhachHang,
-            bool trangThai)
+            bool trangThai = true)
         {
             MaKH = maKH;
             TenKH = tenKH;
@@ -36,6 +36,23 @@ namespace QuanLyBanDoChoi
             DiemTichLuy = diemTichLuy;
             HangKhachHang = hangKhachHang;
             TrangThai = trangThai;
+        }
+    }
+
+    // Alias hỗ trợ tương thích ngược
+    public class KhachHang : KhachHangDTO
+    {
+        public KhachHang() : base() { }
+
+        public KhachHang(
+            string maKH,
+            string tenKH,
+            string sDT,
+            int diemTichLuy,
+            string hangKhachHang,
+            bool trangThai = true)
+            : base(maKH, tenKH, sDT, diemTichLuy, hangKhachHang, trangThai)
+        {
         }
     }
 }

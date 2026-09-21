@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuanLyBanDoChoi.BUS;
+using QuanLyBanDoChoi.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace QuanLyBanDoChoi
+namespace QuanLyBanDoChoi.GUI
 {
     public partial class frmMain : Form
     {

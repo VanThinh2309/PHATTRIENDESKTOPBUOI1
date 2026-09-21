@@ -1,4 +1,4 @@
-﻿namespace QuanLyBanDoChoi
+﻿namespace QuanLyBanDoChoi.GUI
 {
     partial class frmMain
     {
@@ -37,10 +37,10 @@
             this.ptb3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.ucThongKe1 = new QuanLyBanDoChoi.ucThongKe();
-            this.uC_SanPham1 = new QuanLyBanDoChoi.UC_SanPham();
-            this.uC_BanHang1 = new QuanLyBanDoChoi.UC_BanHang();
-            this.ucKhachHang1 = new QuanLyBanDoChoi.ucKhachHang();
+            this.ucThongKe1 = new QuanLyBanDoChoi.GUI.ucThongKe();
+            this.uC_SanPham1 = new QuanLyBanDoChoi.GUI.UC_SanPham();
+            this.uC_BanHang1 = new QuanLyBanDoChoi.GUI.UC_BanHang();
+            this.ucKhachHang1 = new QuanLyBanDoChoi.GUI.ucKhachHang();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pct5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb1)).BeginInit();
