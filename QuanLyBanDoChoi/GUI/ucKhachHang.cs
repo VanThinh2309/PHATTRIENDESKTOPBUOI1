@@ -41,7 +41,7 @@ namespace QuanLyBanDoChoi.GUI
             }
             string ma = txtMaKH.Text;
             string ten = txtHoTen.Text;
-            using (frmLichSu frm = new frmLichSu(ma, ten))
+            using (frmLichSuKH frm = new frmLichSuKH(ma, ten))
             {
                 frm.ShowDialog();
             }

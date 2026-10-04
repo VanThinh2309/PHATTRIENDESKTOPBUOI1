@@ -16,6 +16,8 @@ namespace QuanLyBanDoChoi.GUI
     {
         private bool rdTTTMDaChon;
         private bool rdTTCKDaChon;
+        // Khai báo đối tượng xử lý logic (đổi tên SanPhamBUS theo đúng tên class của bạn)
+        private SanPhamBUS sanPhamBUS = new SanPhamBUS();
         public UC_BanHang()
         {
             InitializeComponent();
@@ -25,12 +27,19 @@ namespace QuanLyBanDoChoi.GUI
             rdTTTM.FlatStyle = FlatStyle.Flat;
             rdTTCK.FlatStyle = FlatStyle.Flat;
             cbbHinhThuc.SelectedItem = "_Tất cả_";
+
+            // Đăng ký sự kiện tự đánh số STT khi nạp xong dữ liệu
+            dgvThongTinDoChoi.DataBindingComplete += dgvThongTinDoChoi_DataBindingComplete;
+
             CapNhatBoLoc();
             DatLaiNgay();
+            ApDungBoLoc();
+            CauHinhGiaoDienBang();
+            LoadDanhSachDoChoiTuDatabase();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void dgvThongTinDoChoi_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-
+            CapNhatSTT();
         }
         private void CapNhatBoLoc()
         {
@@ -146,15 +155,8 @@ namespace QuanLyBanDoChoi.GUI
             dtpDenNgay.Format = DateTimePickerFormat.Custom;
             dtpDenNgay.CustomFormat = " ";
         }
-        private void lblEmpty_Click(object sender, EventArgs e)
-        {
+       
 
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void cbbHinhThuc_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -233,10 +235,139 @@ namespace QuanLyBanDoChoi.GUI
         {
             dtpDenNgay.CustomFormat = "dd/MM/yyyy";
         }
+        private void CauHinhGiaoDienBang()
+        {
+            // 1. Tắt tự động sinh cột
+            dgvThongTinDoChoi.AutoGenerateColumns = false;
+
+            // 2. Ánh xạ tên thuộc tính khớp chính xác với SanPhamDTO
+            dgvThongTinDoChoi.Columns["colMaSP"].DataPropertyName = "MaSP";
+            dgvThongTinDoChoi.Columns["colTenSP"].DataPropertyName = "TenSP";
+
+            // Kiểm tra trong SanPhamDTO: nếu là TenLoai hoặc TenDanhMuc thì đổi lại tương ứng
+            dgvThongTinDoChoi.Columns["colDanhMuc"].DataPropertyName = "TenLoai";
+
+            dgvThongTinDoChoi.Columns["colDonGia"].DataPropertyName = "DonGia";
+
+            // Theo SanPhamBUS: tên thuộc tính là TenXuatXu và TonKho
+            dgvThongTinDoChoi.Columns["colXuatXu"].DataPropertyName = "TenXuatXu";
+            dgvThongTinDoChoi.Columns["colTonKho"].DataPropertyName = "TonKho";
+
+            dgvThongTinDoChoi.Columns["colDoTuoi"].DataPropertyName = "DoTuoi";
+
+            // 3. Định dạng hiển thị tiền tệ cho Đơn giá (VD: 300,000)
+            dgvThongTinDoChoi.Columns["colDonGia"].DefaultCellStyle.Format = "N0";
+        }
+
+
+        private void LoadDanhSachDoChoiTuDatabase()
+        {
+            try
+            {
+                // Gọi hàm lấy danh sách từ CSDL (trả về List<SanPhamDTO> hoặc DataTable)
+                var dsSanPham = sanPhamBUS.LayDanhSach(chiLayConBan: true);
+
+                // Gán dữ liệu vào DataGridView
+                dgvThongTinDoChoi.DataSource = null;
+                dgvThongTinDoChoi.DataSource = dsSanPham;
+
+                // Cập nhật lại cột STT
+                CapNhatSTT();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi nạp dữ liệu từ Database: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CapNhatSTT()
+        {
+            for (int i = 0; i < dgvThongTinDoChoi.Rows.Count; i++)
+            {
+                dgvThongTinDoChoi.Rows[i].Cells["colSTT"].Value = (i + 1).ToString();
+            }
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            //try
+            //{
+                string tuKhoa = txtTimKiem.Text.Trim();
+
+                // Lọc bỏ chuỗi Watermark / Placeholder nếu có
+                if (tuKhoa.StartsWith("Tìm tên") || tuKhoa.StartsWith("Tìm kiếm"))
+                {
+                    tuKhoa = string.Empty;
+                }
+
+                // Gọi hàm tìm kiếm từ BUS
+                var dsKetQua = sanPhamBUS.TimKiem(tuKhoa);
+
+                // Gán lại DataSource (DataBindingComplete sẽ tự động gọi CapNhatSTT)
+                dgvThongTinDoChoi.DataSource = null;
+                dgvThongTinDoChoi.DataSource = dsKetQua;
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Tránh throw lỗi ra UI khi người dùng đang gõ nhanh
+            //}
+        }
 
         private void dgvThongTinDoChoi_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboXuatXu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApDungBoLoc();
+        }
+        private void ApDungBoLoc()
+        {
+            var dsGoc = sanPhamBUS.LayDanhSach(chiLayConBan: true);
+            if (dsGoc == null) return;
+
+            // 1. Đọc thông tin từ ô tìm kiếm
+            string tuKhoa = txtTimKiem.Text.Trim().ToLower();
+            if (tuKhoa.StartsWith("tìm tên") || tuKhoa.StartsWith("tìm kiếm"))
+            {
+                tuKhoa = string.Empty;
+            }
+
+            // 2. Đọc thông tin chọn từ 2 ComboBox
+            string xuatXuChon = cboXuatXu.SelectedItem?.ToString() ?? "_Tất cả xuất xứ_";
+            string doTuoiChon = cboDoTuoi.SelectedItem?.ToString() ?? "_Tất cả độ tuổi_";
+
+            // 3. Lọc danh sách kết hợp 3 điều kiện bằng LINQ
+            var dsKetQua = dsGoc.Where(sp =>
+                // Điều kiện 1: Tìm theo Tên, Mã hoặc Loại sản phẩm
+                (string.IsNullOrEmpty(tuKhoa) ||
+                 (!string.IsNullOrEmpty(sp.TenSP) && sp.TenSP.ToLower().Contains(tuKhoa)) ||
+                 (!string.IsNullOrEmpty(sp.MaSP) && sp.MaSP.ToLower().Contains(tuKhoa)) ||
+                 (!string.IsNullOrEmpty(sp.TenLoai) && sp.TenLoai.ToLower().Contains(tuKhoa))) &&
+
+                // Điều kiện 2: Lọc theo Xuất xứ
+                (xuatXuChon == "_Tất cả xuất xứ_" ||
+                 (!string.IsNullOrEmpty(sp.TenXuatXu) && sp.TenXuatXu.Equals(xuatXuChon, StringComparison.OrdinalIgnoreCase))) &&
+
+                // Điều kiện 3: Lọc theo Độ tuổi
+                (doTuoiChon == "_Tất cả độ tuổi_" ||
+                 (!string.IsNullOrEmpty(sp.DoTuoi) && sp.DoTuoi.Equals(doTuoiChon, StringComparison.OrdinalIgnoreCase)))
+            ).ToList();
+
+            // 4. Cập nhật lại DataSource lên DataGridView
+            dgvThongTinDoChoi.DataSource = null;
+            dgvThongTinDoChoi.DataSource = dsKetQua;
+        }
+
+        private void cboDoTuoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApDungBoLoc();
         }
     }
 }

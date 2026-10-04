@@ -12,15 +12,15 @@ using System.Windows.Forms;
 
 namespace QuanLyBanDoChoi.GUI
 {
-    public partial class frmLichSu : Form
+    public partial class frmLichSuKH : Form
     {
         private string maKH;
         private string tenKH;
-        public frmLichSu()
+        public frmLichSuKH()
         {
             InitializeComponent();
         }
-        public frmLichSu(string ma, string ten)
+        public frmLichSuKH(string ma, string ten)
         {
             InitializeComponent();
 

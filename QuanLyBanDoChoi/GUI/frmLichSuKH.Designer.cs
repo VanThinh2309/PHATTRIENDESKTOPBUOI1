@@ -1,6 +1,6 @@
 ﻿namespace QuanLyBanDoChoi.GUI
 {
-    partial class frmLichSu
+    partial class frmLichSuKH
     {
         /// <summary>
         /// Required designer variable.

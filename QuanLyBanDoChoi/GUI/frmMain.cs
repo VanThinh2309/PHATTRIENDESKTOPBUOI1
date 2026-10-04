@@ -1,4 +1,4 @@
-﻿using QuanLyBanDoChoi.BUS;
+using QuanLyBanDoChoi.BUS;
 using QuanLyBanDoChoi.DTO;
 using System;
 using System.Collections.Generic;
@@ -37,7 +37,7 @@ namespace QuanLyBanDoChoi.GUI
             uC_BanHang1.Visible = false;
             uC_SanPham1.Visible = false;
             ucKhachHang1.Visible = false;
-           
+            ucThongKe1.Visible = false;
 
             // Đưa UserControl được chọn lên trên cùng và hiển thị
             uc.BringToFront();
@@ -74,6 +74,16 @@ namespace QuanLyBanDoChoi.GUI
         }
 
         private void pnlMenu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void uC_SanPham1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uC_BanHang1_Load(object sender, EventArgs e)
         {
 
         }

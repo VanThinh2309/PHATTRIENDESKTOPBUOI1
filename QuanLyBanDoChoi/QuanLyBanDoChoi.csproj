@@ -66,24 +66,38 @@
     <Compile Include="BUS\KhachHangBUS.cs" />
     <Compile Include="BUS\LoaiDoChoiBUS.cs" />
     <Compile Include="BUS\NenTangBUS.cs" />
+    <Compile Include="BUS\NhaCungCapBUS.cs" />
+    <Compile Include="BUS\PhieuNhapBUS.cs" />
     <Compile Include="BUS\SanPhamBUS.cs" />
     <Compile Include="DAL\Database.cs" />
     <Compile Include="DAL\HoaDonDAL.cs" />
     <Compile Include="DAL\KhachHangDAL.cs" />
     <Compile Include="DAL\LoaiDoChoiDAL.cs" />
     <Compile Include="DAL\NenTangDAL.cs" />
+    <Compile Include="DAL\NhaCungCapDAL.cs" />
+    <Compile Include="DAL\PhieuNhapDAL.cs" />
     <Compile Include="DAL\SanPhamDAL.cs" />
+    <Compile Include="DAO\PhieuNhapDAO.cs" />
     <Compile Include="DTO\ChiTietHoaDonDTO.cs" />
+    <Compile Include="DTO\ChiTietPhieuNhapDTO.cs" />
     <Compile Include="DTO\HoaDonDTO.cs" />
     <Compile Include="DTO\KhachHangDTO.cs" />
     <Compile Include="DTO\LoaiDoChoiDTO.cs" />
     <Compile Include="DTO\NenTangDTO.cs" />
+    <Compile Include="DTO\NhaCungCapDTO.cs" />
+    <Compile Include="DTO\PhieuNhapDTO.cs" />
     <Compile Include="DTO\SanPhamDTO.cs" />
-    <Compile Include="GUI\frmLichSu.cs">
+    <Compile Include="GUI\frmLichSuKH.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\frmLichSu.Designer.cs">
-      <DependentUpon>frmLichSu.cs</DependentUpon>
+    <Compile Include="GUI\frmLichSuKH.Designer.cs">
+      <DependentUpon>frmLichSuKH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\frmLichSuNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\frmLichSuNhapHang.Designer.cs">
+      <DependentUpon>frmLichSuNhapHang.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\frmLoc.cs">
       <SubType>Form</SubType>
@@ -96,6 +110,12 @@
     </Compile>
     <Compile Include="GUI\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\frmNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\frmNhapHang.Designer.cs">
+      <DependentUpon>frmNhapHang.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\frmThemKH.cs">
       <SubType>Form</SubType>
@@ -141,14 +161,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\frmLichSu.resx">
-      <DependentUpon>frmLichSu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\frmLoc.resx">
       <DependentUpon>frmLoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\frmNhapHang.resx">
+      <DependentUpon>frmNhapHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\frmThemKH.resx">
       <DependentUpon>frmThemKH.cs</DependentUpon>

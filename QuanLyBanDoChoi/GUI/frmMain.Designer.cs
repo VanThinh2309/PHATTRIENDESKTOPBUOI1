@@ -1,4 +1,4 @@
-﻿namespace QuanLyBanDoChoi.GUI
+namespace QuanLyBanDoChoi.GUI
 {
     partial class frmMain
     {
@@ -37,10 +37,10 @@
             this.ptb3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.ucThongKe1 = new QuanLyBanDoChoi.GUI.ucThongKe();
             this.uC_SanPham1 = new QuanLyBanDoChoi.GUI.UC_SanPham();
             this.uC_BanHang1 = new QuanLyBanDoChoi.GUI.UC_BanHang();
             this.ucKhachHang1 = new QuanLyBanDoChoi.GUI.ucKhachHang();
+            this.ucThongKe1 = new QuanLyBanDoChoi.GUI.ucThongKe();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pct5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb1)).BeginInit();
@@ -146,12 +146,42 @@
             this.pnlContent.Controls.Add(this.ucThongKe1);
             this.pnlContent.Controls.Add(this.uC_SanPham1);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlContent.Location = new System.Drawing.Point(127, 0);
-            this.pnlContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(0);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(1344, 718);
             this.pnlContent.TabIndex = 1;
             this.pnlContent.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlContent_Paint);
+            // 
+            // uC_SanPham1
+            // 
+            this.uC_SanPham1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uC_SanPham1.Font = new System.Drawing.Font("Times New Roman", 10F);
+            this.uC_SanPham1.Location = new System.Drawing.Point(0, 0);
+            this.uC_SanPham1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.uC_SanPham1.Name = "uC_SanPham1";
+            this.uC_SanPham1.Size = new System.Drawing.Size(1344, 718);
+            this.uC_SanPham1.TabIndex = 1;
+            this.uC_SanPham1.Load += new System.EventHandler(this.uC_SanPham1_Load);
+            // 
+            // uC_BanHang1
+            // 
+            this.uC_BanHang1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uC_BanHang1.Location = new System.Drawing.Point(0, 0);
+            this.uC_BanHang1.Margin = new System.Windows.Forms.Padding(5);
+            this.uC_BanHang1.Name = "uC_BanHang1";
+            this.uC_BanHang1.Size = new System.Drawing.Size(1344, 718);
+            this.uC_BanHang1.TabIndex = 0;
+            this.uC_BanHang1.Load += new System.EventHandler(this.uC_BanHang1_Load);
+            // 
+            // ucKhachHang1
+            // 
+            this.ucKhachHang1.Location = new System.Drawing.Point(1, 0);
+            this.ucKhachHang1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ucKhachHang1.Name = "ucKhachHang1";
+            this.ucKhachHang1.Size = new System.Drawing.Size(1344, 721);
+            this.ucKhachHang1.TabIndex = 2;
             // 
             // ucThongKe1
             // 
@@ -162,39 +192,14 @@
             this.ucThongKe1.TabIndex = 3;
             this.ucThongKe1.Visible = false;
             // 
-            // uC_SanPham1
-            // 
-            this.uC_SanPham1.AutoSize = true;
-            this.uC_SanPham1.Location = new System.Drawing.Point(1, 1);
-            this.uC_SanPham1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.uC_SanPham1.Name = "uC_SanPham1";
-            this.uC_SanPham1.Size = new System.Drawing.Size(1344, 721);
-            this.uC_SanPham1.TabIndex = 1;
-            // 
-            // uC_BanHang1
-            // 
-            this.uC_BanHang1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uC_BanHang1.Location = new System.Drawing.Point(0, 0);
-            this.uC_BanHang1.Margin = new System.Windows.Forms.Padding(5);
-            this.uC_BanHang1.Name = "uC_BanHang1";
-            this.uC_BanHang1.Size = new System.Drawing.Size(1344, 718);
-            this.uC_BanHang1.TabIndex = 0;
-            // 
-            // ucKhachHang1
-            // 
-            this.ucKhachHang1.Location = new System.Drawing.Point(1, 0);
-            this.ucKhachHang1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ucKhachHang1.Name = "ucKhachHang1";
-            this.ucKhachHang1.Size = new System.Drawing.Size(1344, 721);
-            this.ucKhachHang1.TabIndex = 2;
-            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1471, 718);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlMenu);
+            this.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
@@ -210,7 +215,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptb3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlContent.ResumeLayout(false);
-            this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
 
         }

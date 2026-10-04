@@ -10,20 +10,26 @@ namespace QuanLyBanDoChoi.DTO
     {
         public string MaSP { get; set; }
         public string MaLoai { get; set; }
+        public string TenLoai { get; set; } // Thêm thuộc tính Tên Loại đồ chơi
         public string TenSP { get; set; }
         public string DoTuoi { get; set; }
         public string TenXuatXu { get; set; }
         public string Hang { get; set; }
+        public decimal GiaNhap { get; set; } // Bổ sung: Giá vốn nhập kho
         public decimal DonGia { get; set; }
         public int TonKho { get; set; }
         public string HinhAnh { get; set; }
         public bool TrangThai { get; set; }
+        public string DanhSachKenhBan { get; set; }  // Chuỗi các kênh bán (VD: "Shopee, TikTok Shop")
 
         public SanPhamDTO()
         {
             TrangThai = true;
             DonGia = 0;
+            GiaNhap = 0;
             TonKho = 0;
+            TenLoai = string.Empty;
+
         }
 
         public SanPhamDTO(
@@ -33,10 +39,13 @@ namespace QuanLyBanDoChoi.DTO
             string doTuoi,
             string tenXuatXu,
             string hang,
+            decimal giaNhap,
             decimal donGia,
             int tonKho,
             string hinhAnh,
-            bool trangThai = true)
+            bool trangThai = true,
+            string tenLoai = "",
+            string danhSachKenhBan = null)
         {
             MaSP = maSP;
             MaLoai = maLoai;
@@ -44,10 +53,13 @@ namespace QuanLyBanDoChoi.DTO
             DoTuoi = doTuoi;
             TenXuatXu = tenXuatXu;
             Hang = hang;
+            GiaNhap = giaNhap;
             DonGia = donGia;
             TonKho = tonKho;
             HinhAnh = hinhAnh;
             TrangThai = trangThai;
+            TenLoai = tenLoai;
+            DanhSachKenhBan = danhSachKenhBan;
         }
     }
 
@@ -63,11 +75,14 @@ namespace QuanLyBanDoChoi.DTO
             string doTuoi,
             string tenXuatXu,
             string hang,
+            decimal giaNhap,
             decimal donGia,
             int tonKho,
             string hinhAnh,
-            bool trangThai = true)
-            : base(maSP, maLoai, tenSP, doTuoi, tenXuatXu, hang, donGia, tonKho, hinhAnh, trangThai)
+            bool trangThai = true,
+            string tenLoai = "",
+            string danhSachKenhBan = null)
+            : base(maSP, maLoai, tenSP, doTuoi, tenXuatXu, hang, giaNhap ,donGia, tonKho, hinhAnh, trangThai, tenLoai, danhSachKenhBan)
         {
         }
     }

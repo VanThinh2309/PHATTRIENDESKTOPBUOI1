@@ -1,10 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using QuanLyBanDoChoi.DTO;
 
 namespace QuanLyBanDoChoi.DAL
@@ -12,21 +9,33 @@ namespace QuanLyBanDoChoi.DAL
     public class SanPhamDAL
     {
         /// <summary>
-        /// Lấy danh sách toàn bộ sản phẩm (mặc định lấy tất cả hoặc chỉ còn kinh doanh)
+        /// Lấy danh sách sản phẩm (Hỗ trợ lọc chỉ lấy sản phẩm đang kinh doanh)
         /// </summary>
         public List<SanPhamDTO> LayDanhSach(bool chiLayConBan = false)
         {
             List<SanPhamDTO> list = new List<SanPhamDTO>();
-            string query = "SELECT MaSP, MaLoai, TenSP, DoTuoi, TenXuatXu, Hang, DonGia, TonKho, HinhAnh, TrangThai FROM SanPham";
-            if (chiLayConBan)
-            {
-                query += " WHERE TrangThai = 1";
-            }
+
+            string query = @"SELECT sp.MaSP, sp.MaLoai, l.TenLoai, sp.TenSP, sp.DoTuoi, 
+                                    sp.TenXuatXu, sp.Hang, sp.GiaNhap, sp.DonGia, 
+                                    sp.TonKho, sp.HinhAnh, sp.TrangThai,
+                                    ISNULL(STUFF((
+                                        SELECT ', ' + nt.TenNenTang
+                                        FROM SanPham_NenTang spnt
+                                        JOIN NenTang nt ON spnt.MaNenTang = nt.MaNenTang
+                                        WHERE spnt.MaSP = sp.MaSP
+                                        FOR XML PATH('')
+                                    ), 1, 2, ''), N'Tại quầy') AS KenhDangBan
+                             FROM SanPham sp
+                             LEFT JOIN LoaiDoChoi l ON sp.MaLoai = l.MaLoai
+                             WHERE (@ChiLayConBan = 0 OR sp.TrangThai = 1)
+                             ORDER BY sp.MaSP DESC";
 
             using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ChiLayConBan", chiLayConBan ? 1 : 0);
                 conn.Open();
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -35,58 +44,128 @@ namespace QuanLyBanDoChoi.DAL
                     }
                 }
             }
+
             return list;
         }
 
         /// <summary>
-        /// Lấy thông tin chi tiết một sản phẩm theo mã
+        /// Lấy chi tiết thông tin một sản phẩm theo mã
         /// </summary>
         public SanPhamDTO LayChiTiet(string maSP)
         {
-            string query = "SELECT MaSP, MaLoai, TenSP, DoTuoi, TenXuatXu, Hang, DonGia, TonKho, HinhAnh, TrangThai FROM SanPham WHERE MaSP = @MaSP";
+            SanPhamDTO sp = null;
+            string query = @"SELECT sp.MaSP, sp.MaLoai, l.TenLoai, sp.TenSP, sp.DoTuoi, 
+                                    sp.TenXuatXu, sp.Hang, sp.GiaNhap, sp.DonGia, 
+                                    sp.TonKho, sp.HinhAnh, sp.TrangThai,
+                                    ISNULL(STUFF((
+                                        SELECT ', ' + nt.TenNenTang
+                                        FROM SanPham_NenTang spnt
+                                        JOIN NenTang nt ON spnt.MaNenTang = nt.MaNenTang
+                                        WHERE spnt.MaSP = sp.MaSP
+                                        FOR XML PATH('')
+                                    ), 1, 2, ''), N'Tại quầy') AS KenhDangBan
+                             FROM SanPham sp
+                             LEFT JOIN LoaiDoChoi l ON sp.MaLoai = l.MaLoai
+                             WHERE sp.MaSP = @MaSP";
+
             using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@MaSP", maSP);
+                cmd.Parameters.AddWithValue("@MaSP", maSP.Trim());
                 conn.Open();
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        return DocSanPhamTuReader(reader);
+                        sp = DocSanPhamTuReader(reader);
                     }
                 }
             }
-            return null;
+
+            return sp;
         }
 
         /// <summary>
-        /// Thêm sản phẩm mới vào CSDL
+        /// Lấy DataTable sản phẩm phục vụ nạp DataSource cho Controls
+        /// </summary>
+        public DataTable LayDataTable()
+        {
+            DataTable dt = new DataTable();
+            string query = @"SELECT sp.MaSP AS [Mã SP], sp.TenSP AS [Tên sản phẩm], 
+                                    l.TenLoai AS [Danh mục], sp.DoTuoi AS [Độ tuổi], 
+                                    sp.DonGia AS [Giá bán], sp.GiaNhap AS [Giá nhập], 
+                                    sp.TonKho AS [Tồn kho], sp.Hang AS [Hãng], 
+                                    sp.TenXuatXu AS [Xuất xứ],
+                                    ISNULL(STUFF((
+                                        SELECT ', ' + nt.TenNenTang
+                                        FROM SanPham_NenTang spnt
+                                        JOIN NenTang nt ON spnt.MaNenTang = nt.MaNenTang
+                                        WHERE spnt.MaSP = sp.MaSP
+                                        FOR XML PATH('')
+                                    ), 1, 2, ''), N'Tại quầy') AS [Kênh bán]
+                             FROM SanPham sp
+                             LEFT JOIN LoaiDoChoi l ON sp.MaLoai = l.MaLoai
+                             WHERE sp.TrangThai = 1
+                             ORDER BY sp.MaSP DESC";
+
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.Fill(dt);
+            }
+
+            return dt;
+        }
+
+        /// <summary>
+        /// Kiểm tra mã sản phẩm đã tồn tại trong CSDL hay chưa
+        /// </summary>
+        public bool KiemTraTonTai(string maSP)
+        {
+            string query = "SELECT COUNT(1) FROM SanPham WHERE MaSP = @MaSP";
+
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaSP", maSP.Trim());
+                conn.Open();
+
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0;
+            }
+        }
+
+        /// <summary>
+        /// Thêm sản phẩm mới
         /// </summary>
         public bool Them(SanPhamDTO sp)
         {
-            string query = @"INSERT INTO SanPham (MaSP, MaLoai, TenSP, DoTuoi, TenXuatXu, Hang, DonGia, TonKho, HinhAnh, TrangThai)
-                             VALUES (@MaSP, @MaLoai, @TenSP, @DoTuoi, @TenXuatXu, @Hang, @DonGia, @TonKho, @HinhAnh, @TrangThai)";
+            string query = @"INSERT INTO SanPham (MaSP, MaLoai, TenSP, DoTuoi, TenXuatXu, Hang, GiaNhap, DonGia, TonKho, HinhAnh, TrangThai)
+                             VALUES (@MaSP, @MaLoai, @TenSP, @DoTuoi, @TenXuatXu, @Hang, @GiaNhap, @DonGia, @TonKho, @HinhAnh, @TrangThai)";
 
-            SqlParameter[] parameters = new SqlParameter[]
+            using (SqlConnection conn = Database.GetConnection())
             {
-                new SqlParameter("@MaSP", sp.MaSP ?? (object)DBNull.Value),
-                new SqlParameter("@MaLoai", string.IsNullOrEmpty(sp.MaLoai) ? (object)DBNull.Value : sp.MaLoai),
-                new SqlParameter("@TenSP", sp.TenSP ?? string.Empty),
-                new SqlParameter("@DoTuoi", string.IsNullOrEmpty(sp.DoTuoi) ? (object)DBNull.Value : sp.DoTuoi),
-                new SqlParameter("@TenXuatXu", string.IsNullOrEmpty(sp.TenXuatXu) ? (object)DBNull.Value : sp.TenXuatXu),
-                new SqlParameter("@Hang", string.IsNullOrEmpty(sp.Hang) ? (object)DBNull.Value : sp.Hang),
-                new SqlParameter("@DonGia", sp.DonGia),
-                new SqlParameter("@TonKho", sp.TonKho),
-                new SqlParameter("@HinhAnh", string.IsNullOrEmpty(sp.HinhAnh) ? (object)DBNull.Value : sp.HinhAnh),
-                new SqlParameter("@TrangThai", sp.TrangThai)
-            };
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaSP", sp.MaSP.Trim());
+                cmd.Parameters.AddWithValue("@MaLoai", string.IsNullOrEmpty(sp.MaLoai) ? (object)DBNull.Value : sp.MaLoai.Trim());
+                cmd.Parameters.AddWithValue("@TenSP", sp.TenSP.Trim());
+                cmd.Parameters.AddWithValue("@DoTuoi", string.IsNullOrEmpty(sp.DoTuoi) ? (object)DBNull.Value : sp.DoTuoi.Trim());
+                cmd.Parameters.AddWithValue("@TenXuatXu", string.IsNullOrEmpty(sp.TenXuatXu) ? (object)DBNull.Value : sp.TenXuatXu.Trim());
+                cmd.Parameters.AddWithValue("@Hang", string.IsNullOrEmpty(sp.Hang) ? (object)DBNull.Value : sp.Hang.Trim());
+                cmd.Parameters.AddWithValue("@GiaNhap", sp.GiaNhap);
+                cmd.Parameters.AddWithValue("@DonGia", sp.DonGia);
+                cmd.Parameters.AddWithValue("@TonKho", sp.TonKho);
+                cmd.Parameters.AddWithValue("@HinhAnh", string.IsNullOrEmpty(sp.HinhAnh) ? (object)DBNull.Value : sp.HinhAnh.Trim());
+                cmd.Parameters.AddWithValue("@TrangThai", sp.TrangThai ? 1 : 0);
 
-            return Database.ExecuteNonQuery(query, parameters) > 0;
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
         }
 
         /// <summary>
-        /// Cập nhật thông tin sản phẩm
+        /// Cập nhật thông tin sản phẩm (Đã bổ sung cập nhật TrangThai)
         /// </summary>
         public bool CapNhat(SanPhamDTO sp)
         {
@@ -96,63 +175,85 @@ namespace QuanLyBanDoChoi.DAL
                                  DoTuoi = @DoTuoi,
                                  TenXuatXu = @TenXuatXu,
                                  Hang = @Hang,
+                                 GiaNhap = @GiaNhap,
                                  DonGia = @DonGia,
                                  TonKho = @TonKho,
                                  HinhAnh = @HinhAnh,
                                  TrangThai = @TrangThai
                              WHERE MaSP = @MaSP";
 
-            SqlParameter[] parameters = new SqlParameter[]
+            using (SqlConnection conn = Database.GetConnection())
             {
-                new SqlParameter("@MaSP", sp.MaSP),
-                new SqlParameter("@MaLoai", string.IsNullOrEmpty(sp.MaLoai) ? (object)DBNull.Value : sp.MaLoai),
-                new SqlParameter("@TenSP", sp.TenSP ?? string.Empty),
-                new SqlParameter("@DoTuoi", string.IsNullOrEmpty(sp.DoTuoi) ? (object)DBNull.Value : sp.DoTuoi),
-                new SqlParameter("@TenXuatXu", string.IsNullOrEmpty(sp.TenXuatXu) ? (object)DBNull.Value : sp.TenXuatXu),
-                new SqlParameter("@Hang", string.IsNullOrEmpty(sp.Hang) ? (object)DBNull.Value : sp.Hang),
-                new SqlParameter("@DonGia", sp.DonGia),
-                new SqlParameter("@TonKho", sp.TonKho),
-                new SqlParameter("@HinhAnh", string.IsNullOrEmpty(sp.HinhAnh) ? (object)DBNull.Value : sp.HinhAnh),
-                new SqlParameter("@TrangThai", sp.TrangThai)
-            };
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@MaSP", sp.MaSP.Trim());
+                cmd.Parameters.AddWithValue("@MaLoai", string.IsNullOrEmpty(sp.MaLoai) ? (object)DBNull.Value : sp.MaLoai.Trim());
+                cmd.Parameters.AddWithValue("@TenSP", sp.TenSP.Trim());
+                cmd.Parameters.AddWithValue("@DoTuoi", string.IsNullOrEmpty(sp.DoTuoi) ? (object)DBNull.Value : sp.DoTuoi.Trim());
+                cmd.Parameters.AddWithValue("@TenXuatXu", string.IsNullOrEmpty(sp.TenXuatXu) ? (object)DBNull.Value : sp.TenXuatXu.Trim());
+                cmd.Parameters.AddWithValue("@Hang", string.IsNullOrEmpty(sp.Hang) ? (object)DBNull.Value : sp.Hang.Trim());
+                cmd.Parameters.AddWithValue("@GiaNhap", sp.GiaNhap);
+                cmd.Parameters.AddWithValue("@DonGia", sp.DonGia);
+                cmd.Parameters.AddWithValue("@TonKho", sp.TonKho);
+                cmd.Parameters.AddWithValue("@HinhAnh", string.IsNullOrEmpty(sp.HinhAnh) ? (object)DBNull.Value : sp.HinhAnh.Trim());
+                cmd.Parameters.AddWithValue("@TrangThai", sp.TrangThai ? 1 : 0);
 
-            return Database.ExecuteNonQuery(query, parameters) > 0;
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
         }
 
         /// <summary>
-        /// Xóa sản phẩm (mặc định xóa mềm TrangThai = 0)
+        /// Xóa sản phẩm (Mặc định xóa mềm bằng cách đặt TrangThai = 0)
         /// </summary>
         public bool Xoa(string maSP, bool xoaMem = true)
         {
-            if (xoaMem)
-            {
-                string query = "UPDATE SanPham SET TrangThai = 0 WHERE MaSP = @MaSP";
-                SqlParameter[] parameters = { new SqlParameter("@MaSP", maSP) };
-                return Database.ExecuteNonQuery(query, parameters) > 0;
-            }
-            else
-            {
-                string query = "DELETE FROM SanPham WHERE MaSP = @MaSP";
-                SqlParameter[] parameters = { new SqlParameter("@MaSP", maSP) };
-                return Database.ExecuteNonQuery(query, parameters) > 0;
-            }
-        }
-
-        /// <summary>
-        /// Tìm kiếm sản phẩm theo mã, tên hoặc hãng sản xuất
-        /// </summary>
-        public List<SanPhamDTO> TimKiem(string tuKhoa)
-        {
-            List<SanPhamDTO> list = new List<SanPhamDTO>();
-            string query = @"SELECT MaSP, MaLoai, TenSP, DoTuoi, TenXuatXu, Hang, DonGia, TonKho, HinhAnh, TrangThai 
-                             FROM SanPham 
-                             WHERE MaSP LIKE @TuKhoa OR TenSP LIKE @TuKhoa OR Hang LIKE @TuKhoa";
+            string query = xoaMem
+                ? "UPDATE SanPham SET TrangThai = 0 WHERE MaSP = @MaSP"
+                : "DELETE FROM SanPham WHERE MaSP = @MaSP";
 
             using (SqlConnection conn = Database.GetConnection())
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@TuKhoa", "%" + tuKhoa + "%");
+                cmd.Parameters.AddWithValue("@MaSP", maSP.Trim());
+
                 conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        /// <summary>
+        /// Tìm kiếm sản phẩm theo từ khóa (Mã, Tên, Hãng, Xuất xứ)
+        /// </summary>
+        public List<SanPhamDTO> TimKiem(string tuKhoa)
+        {
+            List<SanPhamDTO> list = new List<SanPhamDTO>();
+
+            string query = @"SELECT sp.MaSP, sp.MaLoai, l.TenLoai, sp.TenSP, sp.DoTuoi, 
+                                    sp.TenXuatXu, sp.Hang, sp.GiaNhap, sp.DonGia, 
+                                    sp.TonKho, sp.HinhAnh, sp.TrangThai,
+                                    ISNULL(STUFF((
+                                        SELECT ', ' + nt.TenNenTang
+                                        FROM SanPham_NenTang spnt
+                                        JOIN NenTang nt ON spnt.MaNenTang = nt.MaNenTang
+                                        WHERE spnt.MaSP = sp.MaSP
+                                        FOR XML PATH('')
+                                    ), 1, 2, ''), N'Tại quầy') AS KenhDangBan
+                             FROM SanPham sp
+                             LEFT JOIN LoaiDoChoi l ON sp.MaLoai = l.MaLoai
+                             WHERE sp.TrangThai = 1
+                               AND (sp.MaSP LIKE @Keyword 
+                                    OR sp.TenSP LIKE @Keyword 
+                                    OR sp.Hang LIKE @Keyword 
+                                    OR sp.TenXuatXu LIKE @Keyword 
+                                    OR l.TenLoai LIKE @Keyword)
+                             ORDER BY sp.MaSP DESC";
+
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Keyword", "%" + tuKhoa.Trim() + "%");
+                conn.Open();
+
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -161,44 +262,41 @@ namespace QuanLyBanDoChoi.DAL
                     }
                 }
             }
+
             return list;
         }
 
         /// <summary>
-        /// Kiểm tra sản phẩm đã tồn tại theo mã chưa
+        /// Hàm bổ trợ chuyển đổi dữ liệu từ SqlDataReader sang SanPhamDTO
         /// </summary>
-        public bool KiemTraTonTai(string maSP)
-        {
-            string query = "SELECT COUNT(*) FROM SanPham WHERE MaSP = @MaSP";
-            SqlParameter[] parameters = { new SqlParameter("@MaSP", maSP) };
-            object res = Database.ExecuteScalar(query, parameters);
-            return res != null && Convert.ToInt32(res) > 0;
-        }
-
-        /// <summary>
-        /// Lấy DataTable sản phẩm phục vụ DataSource
-        /// </summary>
-        public DataTable LayDataTable()
-        {
-            string query = "SELECT MaSP, MaLoai, TenSP, DoTuoi, TenXuatXu, Hang, DonGia, TonKho, HinhAnh, TrangThai FROM SanPham";
-            return Database.GetData(query);
-        }
-
         private SanPhamDTO DocSanPhamTuReader(SqlDataReader reader)
         {
             return new SanPhamDTO
             {
                 MaSP = reader["MaSP"].ToString().Trim(),
                 MaLoai = reader["MaLoai"] != DBNull.Value ? reader["MaLoai"].ToString().Trim() : string.Empty,
-                TenSP = reader["TenSP"].ToString(),
-                DoTuoi = reader["DoTuoi"] != DBNull.Value ? reader["DoTuoi"].ToString() : string.Empty,
-                TenXuatXu = reader["TenXuatXu"] != DBNull.Value ? reader["TenXuatXu"].ToString() : string.Empty,
-                Hang = reader["Hang"] != DBNull.Value ? reader["Hang"].ToString() : string.Empty,
+                TenLoai = ColumnExists(reader, "TenLoai") && reader["TenLoai"] != DBNull.Value ? reader["TenLoai"].ToString().Trim() : string.Empty,
+                TenSP = reader["TenSP"].ToString().Trim(),
+                DoTuoi = reader["DoTuoi"] != DBNull.Value ? reader["DoTuoi"].ToString().Trim() : string.Empty,
+                TenXuatXu = reader["TenXuatXu"] != DBNull.Value ? reader["TenXuatXu"].ToString().Trim() : string.Empty,
+                Hang = reader["Hang"] != DBNull.Value ? reader["Hang"].ToString().Trim() : string.Empty,
+                GiaNhap = reader["GiaNhap"] != DBNull.Value ? Convert.ToDecimal(reader["GiaNhap"]) : 0,
                 DonGia = reader["DonGia"] != DBNull.Value ? Convert.ToDecimal(reader["DonGia"]) : 0,
                 TonKho = reader["TonKho"] != DBNull.Value ? Convert.ToInt32(reader["TonKho"]) : 0,
-                HinhAnh = reader["HinhAnh"] != DBNull.Value ? reader["HinhAnh"].ToString() : string.Empty,
-                TrangThai = reader["TrangThai"] != DBNull.Value && Convert.ToBoolean(reader["TrangThai"])
+                HinhAnh = reader["HinhAnh"] != DBNull.Value ? reader["HinhAnh"].ToString().Trim() : string.Empty,
+                TrangThai = ColumnExists(reader, "TrangThai") && reader["TrangThai"] != DBNull.Value ? Convert.ToBoolean(reader["TrangThai"]) : true,
+                DanhSachKenhBan = ColumnExists(reader, "KenhDangBan") && reader["KenhDangBan"] != DBNull.Value ? reader["KenhDangBan"].ToString().Trim() : "Tại quầy"
             };
+        }
+
+        private bool ColumnExists(SqlDataReader reader, string columnName)
+        {
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                if (reader.GetName(i).Equals(columnName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            return false;
         }
     }
 }
