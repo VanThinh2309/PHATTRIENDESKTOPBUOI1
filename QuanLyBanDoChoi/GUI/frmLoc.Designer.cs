@@ -46,6 +46,7 @@
             this.cboSapXep = new System.Windows.Forms.ComboBox();
             this.btnXoaBoLoc = new System.Windows.Forms.Button();
             this.btnApDung = new System.Windows.Forms.Button();
+            this.chkLazada = new System.Windows.Forms.CheckBox();
             this.gbTonKho.SuspendLayout();
             this.gbKenhBan.SuspendLayout();
             this.gbDongBo.SuspendLayout();
@@ -71,9 +72,9 @@
             this.gbTonKho.Controls.Add(this.rdoHetHang);
             this.gbTonKho.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.gbTonKho.Location = new System.Drawing.Point(16, 52);
-            this.gbTonKho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbTonKho.Margin = new System.Windows.Forms.Padding(4);
             this.gbTonKho.Name = "gbTonKho";
-            this.gbTonKho.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbTonKho.Padding = new System.Windows.Forms.Padding(4);
             this.gbTonKho.Size = new System.Drawing.Size(453, 64);
             this.gbTonKho.TabIndex = 1;
             this.gbTonKho.TabStop = false;
@@ -85,7 +86,7 @@
             this.rdoTonKhoTatCa.Checked = true;
             this.rdoTonKhoTatCa.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.rdoTonKhoTatCa.Location = new System.Drawing.Point(13, 27);
-            this.rdoTonKhoTatCa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoTonKhoTatCa.Margin = new System.Windows.Forms.Padding(4);
             this.rdoTonKhoTatCa.Name = "rdoTonKhoTatCa";
             this.rdoTonKhoTatCa.Size = new System.Drawing.Size(66, 23);
             this.rdoTonKhoTatCa.TabIndex = 0;
@@ -97,7 +98,7 @@
             this.rdoConHang.AutoSize = true;
             this.rdoConHang.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.rdoConHang.Location = new System.Drawing.Point(100, 27);
-            this.rdoConHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoConHang.Margin = new System.Windows.Forms.Padding(4);
             this.rdoConHang.Name = "rdoConHang";
             this.rdoConHang.Size = new System.Drawing.Size(90, 23);
             this.rdoConHang.TabIndex = 1;
@@ -108,7 +109,7 @@
             this.rdoSapHet.AutoSize = true;
             this.rdoSapHet.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.rdoSapHet.Location = new System.Drawing.Point(207, 27);
-            this.rdoSapHet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoSapHet.Margin = new System.Windows.Forms.Padding(4);
             this.rdoSapHet.Name = "rdoSapHet";
             this.rdoSapHet.Size = new System.Drawing.Size(76, 23);
             this.rdoSapHet.TabIndex = 2;
@@ -119,7 +120,7 @@
             this.rdoHetHang.AutoSize = true;
             this.rdoHetHang.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.rdoHetHang.Location = new System.Drawing.Point(307, 27);
-            this.rdoHetHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoHetHang.Margin = new System.Windows.Forms.Padding(4);
             this.rdoHetHang.Name = "rdoHetHang";
             this.rdoHetHang.Size = new System.Drawing.Size(87, 23);
             this.rdoHetHang.TabIndex = 3;
@@ -140,7 +141,7 @@
             // 
             this.txtGiaTu.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtGiaTu.Location = new System.Drawing.Point(16, 148);
-            this.txtGiaTu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGiaTu.Margin = new System.Windows.Forms.Padding(4);
             this.txtGiaTu.Name = "txtGiaTu";
             this.txtGiaTu.Size = new System.Drawing.Size(199, 27);
             this.txtGiaTu.TabIndex = 3;
@@ -159,7 +160,7 @@
             // 
             this.txtGiaDen.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtGiaDen.Location = new System.Drawing.Point(261, 148);
-            this.txtGiaDen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGiaDen.Margin = new System.Windows.Forms.Padding(4);
             this.txtGiaDen.Name = "txtGiaDen";
             this.txtGiaDen.Size = new System.Drawing.Size(207, 27);
             this.txtGiaDen.TabIndex = 5;
@@ -179,7 +180,7 @@
             // 
             this.txtTonKhoTu.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTonKhoTu.Location = new System.Drawing.Point(16, 209);
-            this.txtTonKhoTu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTonKhoTu.Margin = new System.Windows.Forms.Padding(4);
             this.txtTonKhoTu.Name = "txtTonKhoTu";
             this.txtTonKhoTu.Size = new System.Drawing.Size(199, 27);
             this.txtTonKhoTu.TabIndex = 7;
@@ -198,7 +199,7 @@
             // 
             this.txtTonKhoDen.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTonKhoDen.Location = new System.Drawing.Point(261, 209);
-            this.txtTonKhoDen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTonKhoDen.Margin = new System.Windows.Forms.Padding(4);
             this.txtTonKhoDen.Name = "txtTonKhoDen";
             this.txtTonKhoDen.Size = new System.Drawing.Size(207, 27);
             this.txtTonKhoDen.TabIndex = 9;
@@ -220,7 +221,7 @@
             this.cboThuongHieu.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cboThuongHieu.FormattingEnabled = true;
             this.cboThuongHieu.Location = new System.Drawing.Point(16, 271);
-            this.cboThuongHieu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboThuongHieu.Margin = new System.Windows.Forms.Padding(4);
             this.cboThuongHieu.Name = "cboThuongHieu";
             this.cboThuongHieu.Size = new System.Drawing.Size(452, 28);
             this.cboThuongHieu.TabIndex = 11;
@@ -242,7 +243,7 @@
             this.cboDoTuoi.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cboDoTuoi.FormattingEnabled = true;
             this.cboDoTuoi.Location = new System.Drawing.Point(16, 332);
-            this.cboDoTuoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboDoTuoi.Margin = new System.Windows.Forms.Padding(4);
             this.cboDoTuoi.Name = "cboDoTuoi";
             this.cboDoTuoi.Size = new System.Drawing.Size(452, 28);
             this.cboDoTuoi.TabIndex = 13;
@@ -250,12 +251,13 @@
             // gbKenhBan
             // 
             this.gbKenhBan.Controls.Add(this.chkShopee);
+            this.gbKenhBan.Controls.Add(this.chkLazada);
             this.gbKenhBan.Controls.Add(this.chkTikTok);
             this.gbKenhBan.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.gbKenhBan.Location = new System.Drawing.Point(16, 372);
-            this.gbKenhBan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbKenhBan.Margin = new System.Windows.Forms.Padding(4);
             this.gbKenhBan.Name = "gbKenhBan";
-            this.gbKenhBan.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbKenhBan.Padding = new System.Windows.Forms.Padding(4);
             this.gbKenhBan.Size = new System.Drawing.Size(453, 62);
             this.gbKenhBan.TabIndex = 14;
             this.gbKenhBan.TabStop = false;
@@ -266,7 +268,7 @@
             this.chkShopee.AutoSize = true;
             this.chkShopee.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.chkShopee.Location = new System.Drawing.Point(13, 27);
-            this.chkShopee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkShopee.Margin = new System.Windows.Forms.Padding(4);
             this.chkShopee.Name = "chkShopee";
             this.chkShopee.Size = new System.Drawing.Size(76, 23);
             this.chkShopee.TabIndex = 0;
@@ -277,7 +279,7 @@
             this.chkTikTok.AutoSize = true;
             this.chkTikTok.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.chkTikTok.Location = new System.Drawing.Point(133, 27);
-            this.chkTikTok.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkTikTok.Margin = new System.Windows.Forms.Padding(4);
             this.chkTikTok.Name = "chkTikTok";
             this.chkTikTok.Size = new System.Drawing.Size(104, 23);
             this.chkTikTok.TabIndex = 1;
@@ -290,9 +292,9 @@
             this.gbDongBo.Controls.Add(this.rdoLoiDongBo);
             this.gbDongBo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.gbDongBo.Location = new System.Drawing.Point(16, 441);
-            this.gbDongBo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDongBo.Margin = new System.Windows.Forms.Padding(4);
             this.gbDongBo.Name = "gbDongBo";
-            this.gbDongBo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbDongBo.Padding = new System.Windows.Forms.Padding(4);
             this.gbDongBo.Size = new System.Drawing.Size(453, 62);
             this.gbDongBo.TabIndex = 15;
             this.gbDongBo.TabStop = false;
@@ -304,7 +306,7 @@
             this.rdoDongBoTatCa.Checked = true;
             this.rdoDongBoTatCa.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.rdoDongBoTatCa.Location = new System.Drawing.Point(13, 27);
-            this.rdoDongBoTatCa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoDongBoTatCa.Margin = new System.Windows.Forms.Padding(4);
             this.rdoDongBoTatCa.Name = "rdoDongBoTatCa";
             this.rdoDongBoTatCa.Size = new System.Drawing.Size(66, 23);
             this.rdoDongBoTatCa.TabIndex = 0;
@@ -316,7 +318,7 @@
             this.rdoDongBoOK.AutoSize = true;
             this.rdoDongBoOK.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.rdoDongBoOK.Location = new System.Drawing.Point(133, 27);
-            this.rdoDongBoOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoDongBoOK.Margin = new System.Windows.Forms.Padding(4);
             this.rdoDongBoOK.Name = "rdoDongBoOK";
             this.rdoDongBoOK.Size = new System.Drawing.Size(107, 23);
             this.rdoDongBoOK.TabIndex = 1;
@@ -327,7 +329,7 @@
             this.rdoLoiDongBo.AutoSize = true;
             this.rdoLoiDongBo.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.rdoLoiDongBo.Location = new System.Drawing.Point(280, 27);
-            this.rdoLoiDongBo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdoLoiDongBo.Margin = new System.Windows.Forms.Padding(4);
             this.rdoLoiDongBo.Name = "rdoLoiDongBo";
             this.rdoLoiDongBo.Size = new System.Drawing.Size(104, 23);
             this.rdoLoiDongBo.TabIndex = 2;
@@ -350,7 +352,7 @@
             this.cboSapXep.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.cboSapXep.FormattingEnabled = true;
             this.cboSapXep.Location = new System.Drawing.Point(16, 532);
-            this.cboSapXep.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboSapXep.Margin = new System.Windows.Forms.Padding(4);
             this.cboSapXep.Name = "cboSapXep";
             this.cboSapXep.Size = new System.Drawing.Size(452, 28);
             this.cboSapXep.TabIndex = 17;
@@ -362,7 +364,7 @@
             this.btnXoaBoLoc.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnXoaBoLoc.ForeColor = System.Drawing.Color.DimGray;
             this.btnXoaBoLoc.Location = new System.Drawing.Point(16, 585);
-            this.btnXoaBoLoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnXoaBoLoc.Margin = new System.Windows.Forms.Padding(4);
             this.btnXoaBoLoc.Name = "btnXoaBoLoc";
             this.btnXoaBoLoc.Size = new System.Drawing.Size(200, 44);
             this.btnXoaBoLoc.TabIndex = 18;
@@ -378,13 +380,24 @@
             this.btnApDung.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnApDung.ForeColor = System.Drawing.Color.White;
             this.btnApDung.Location = new System.Drawing.Point(261, 585);
-            this.btnApDung.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnApDung.Margin = new System.Windows.Forms.Padding(4);
             this.btnApDung.Name = "btnApDung";
             this.btnApDung.Size = new System.Drawing.Size(208, 44);
             this.btnApDung.TabIndex = 19;
             this.btnApDung.Text = "Áp dụng";
             this.btnApDung.UseVisualStyleBackColor = false;
             this.btnApDung.Click += new System.EventHandler(this.btnApDung_Click);
+            // 
+            // chkLazada
+            // 
+            this.chkLazada.AutoSize = true;
+            this.chkLazada.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.chkLazada.Location = new System.Drawing.Point(280, 27);
+            this.chkLazada.Margin = new System.Windows.Forms.Padding(4);
+            this.chkLazada.Name = "chkLazada";
+            this.chkLazada.Size = new System.Drawing.Size(73, 23);
+            this.chkLazada.TabIndex = 1;
+            this.chkLazada.Text = "Lazada";
             // 
             // frmLoc
             // 
@@ -413,7 +426,7 @@
             this.Controls.Add(this.gbTonKho);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLoc";
@@ -461,5 +474,6 @@
         private System.Windows.Forms.ComboBox cboSapXep;
         private System.Windows.Forms.Button btnXoaBoLoc;
         private System.Windows.Forms.Button btnApDung;
+        private System.Windows.Forms.CheckBox chkLazada;
     }
 }

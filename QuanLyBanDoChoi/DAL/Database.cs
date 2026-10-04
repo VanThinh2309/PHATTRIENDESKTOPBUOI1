@@ -11,7 +11,7 @@ namespace QuanLyBanDoChoi.DAL
     public class Database
     {
         // Chuỗi kết nối đến SQL Server (có thể tùy chỉnh)
-        public static string ConnectionString { get; set; } = @"Data Source=LAPTOP-3A0COG18;Initial Catalog=QLBDC_DB;Integrated Security=True";
+        public static string ConnectionString { get; set; } = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=QLBDC_DB;Integrated Security=True";
 
         public static SqlConnection GetConnection()
         {

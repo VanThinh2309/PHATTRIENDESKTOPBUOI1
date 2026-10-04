@@ -103,6 +103,7 @@ namespace QuanLyBanDoChoi.GUI
             // Kênh bán
             chkShopee.Checked = FilterData.KenhBan != null && FilterData.KenhBan.Contains("Shopee");
             chkTikTok.Checked = FilterData.KenhBan != null && FilterData.KenhBan.Contains("TikTok Shop");
+            chkLazada.Checked = FilterData.KenhBan != null && FilterData.KenhBan.Contains("Lazada");
            
 
             // Trạng thái đồng bộ
@@ -218,6 +219,7 @@ namespace QuanLyBanDoChoi.GUI
             FilterData.KenhBan = new List<string>();
             if (chkShopee.Checked) FilterData.KenhBan.Add("Shopee");
             if (chkTikTok.Checked) FilterData.KenhBan.Add("TikTok Shop");
+            if (chkLazada.Checked) FilterData.KenhBan.Add("Lazada");
            
             // 7. Trạng thái đồng bộ
             if (rdoDongBoOK.Checked) FilterData.TrangThaiDongBo = "Đồng bộ OK";
